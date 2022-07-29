@@ -12,7 +12,7 @@ class TestControllerTest extends TestCase
      *
      * @return void
      */
-    public function testIndex()
+    public function testIndex(): void
     {
         $controller = new TestController();
         $response = $controller->index();
