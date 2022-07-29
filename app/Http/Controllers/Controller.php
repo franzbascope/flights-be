@@ -13,7 +13,7 @@ class Controller extends BaseController
 
     public function test(){
         $test = array();
-        return $test;
+        return $test
     }
 
 }
