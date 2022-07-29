@@ -32,7 +32,7 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit --coverage-clover ./coverage.xml --testsuite=Unit && cat ./coverage.xml
+      run: vendor/bin/phpunit --coverage-clover ./coverage.xml --testsuite=Unit
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       env:
