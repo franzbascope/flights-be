@@ -12,11 +12,4 @@ class Controller extends BaseController
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
-
-    public function test()
-    {
-        $test = [];
-        echo "Hola Mundo";
-        return $test;
-    }
 }
