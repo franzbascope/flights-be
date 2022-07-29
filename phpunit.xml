@@ -10,7 +10,6 @@
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
-            <exclude>./tests</exclude>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">

@@ -32,7 +32,7 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit --coverage-clover=coverage.xml --testsuite=Unit
+      run: vendor/bin/phpunit --configuration phpunit.xml --coverage-clover=coverage.xml --testsuite=Unit
     - name: Fix code coverage paths
       run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
     - name: SonarCloud Scan
