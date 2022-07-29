@@ -16,6 +16,6 @@ class Controller extends BaseController
     public function test()
     {
         $test = [];
-        return $test
+        return $tests
     }
 }

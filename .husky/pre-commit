@@ -3,6 +3,7 @@
 
 composer run lint:fix
 exitCode="$?"
+echo $exitCode
 if [ $exitCode != 0 ]; then
     echo "husky - $hook_name hook exited with code $exitCode (error)"
     exit $exitCode
