@@ -16,6 +16,7 @@ class Controller extends BaseController
     public function test()
     {
         $test = [];
+        echo "Hola Mundo";
         return $test;
     }
 }
