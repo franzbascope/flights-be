@@ -9,7 +9,7 @@ class FlightsController extends Controller
     public function index()
     {
         $flights = [];
-        for($i = 0; $i < random_int(5,20);$i++){
+        for ($i = 0; $i < random_int(5, 20);$i++) {
             $flights[] = $this->store();
         }
         return $flights;
