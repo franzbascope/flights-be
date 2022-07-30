@@ -25,4 +25,10 @@ class FlightsController extends Controller
             "airplane" => []
         ];
     }
+
+    public function destroy(){
+        return [
+            "success"=>true
+        ];
+    }
 }
