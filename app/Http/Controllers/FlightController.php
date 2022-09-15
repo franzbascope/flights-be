@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class FlightController extends Controller
 {
-
     /**
      * Store a newly created resource in storage.
      *
@@ -21,8 +20,9 @@ class FlightController extends Controller
         return Flight::create($data);
     }
 
-    public function edit($flightUuid){
-        return Flight::query()->where("uuid",$flightUuid)->firstOrFail();
+    public function edit($flightUuid)
+    {
+        return Flight::query()->where("uuid", $flightUuid)->firstOrFail();
     }
 
 
@@ -33,9 +33,9 @@ class FlightController extends Controller
      * @param  \App\Models\Flight  $flight
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
-    public function update(Request $request,$flightUuid)
+    public function update(Request $request, $flightUuid)
     {
-        $flight = Flight::query()->where("uuid",$flightUuid)->firstOrFail();
+        $flight = Flight::query()->where("uuid", $flightUuid)->firstOrFail();
         $data = $request->all();
         $flight->fill($data);
         return $flight;
@@ -48,9 +48,9 @@ class FlightController extends Controller
      * @param  \App\Models\Flight  $flight
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
-    public function cancelFlight(Request $request,$flightUuid)
+    public function cancelFlight(Request $request, $flightUuid)
     {
-        $flight = Flight::query()->where("uuid",$flightUuid)->firstOrFail();
+        $flight = Flight::query()->where("uuid", $flightUuid)->firstOrFail();
         $data = $request->all();
         $flight->fill($data);
         return $flight;
@@ -64,7 +64,7 @@ class FlightController extends Controller
      */
     public function destroy($flightUuid)
     {
-        $flight = Flight::query()->where("uuid",$flightUuid)->firstOrFail();
+        $flight = Flight::query()->where("uuid", $flightUuid)->firstOrFail();
         $flight->delete();
         return $flight;
     }
