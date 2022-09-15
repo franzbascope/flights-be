@@ -26,7 +26,8 @@ class FlightsController extends Controller
         ];
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         return [
             "success"=>true
         ];
