@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('flights',[\App\Http\Controllers\FlightsController::class,'index']);
 Route::post('flights',[\App\Http\Controllers\FlightsController::class,'store']);
+Route::resource("flight_programs",\App\Http\Controllers\FlightProgramController::class);
+Route::resource("flights",\App\Http\Controllers\FlightController::class);
+Route::patch("flights/cancel/{flightUuid}",[\App\Http\Controllers\FlightController::class,'cancelFlight']);
