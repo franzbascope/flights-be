@@ -15,7 +15,10 @@ use Illuminate\Queue\SerializesModels;
 
 class ProcessAddFlight implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $flight;
 
@@ -36,7 +39,6 @@ class ProcessAddFlight implements ShouldQueue
      */
     public function handle()
     {
-
         $this->flight->notified = true;
         $this->flight->save();
         var_dump("test");
