@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessAddFlight;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,9 @@ class FlightController extends Controller
     {
         $data = $request->all();
         $data["uuid"] = uniqid("flight");
-        return Flight::create($data);
+        $flight = Flight::create($data);
+        ProcessAddFlight::dispatch($flight);
+        return Flight::find($flight->id);
     }
 
     public function edit($flightUuid)
