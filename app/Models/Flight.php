@@ -9,9 +9,10 @@ class Flight extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["startTime","endTime","crew","aircraft","uuid","flight_program_id","unique_code","status"];
+    protected $fillable = ["startTime","endTime","crew","aircraft","uuid","flight_program_id","unique_code","status","information"];
     protected $casts = [
         'aircraft' => 'array',
         'crew' => 'array',
+        'information' => 'array',
     ];
 }

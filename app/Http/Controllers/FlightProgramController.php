@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 
 class FlightProgramController extends Controller
 {
-
-    public function index(){
-        return FlightProgram::query()->where("flight_program_id","=",null)->get()->all();
+    public function index()
+    {
+        return FlightProgram::query()->where("flight_program_id", "=", null)->get()->all();
     }
 
-    public function edit($flightProgramUuid){
-        return FlightProgram::query()->where("uuid",$flightProgramUuid)->firstOrFail();
+    public function edit($flightProgramUuid)
+    {
+        return FlightProgram::query()->where("uuid", $flightProgramUuid)->firstOrFail();
     }
 
     /**
@@ -26,11 +27,11 @@ class FlightProgramController extends Controller
     {
         $data = $request->all();
         $data["uuid"] = uniqid("program");
-       $flightProgram = FlightProgram::create($data);
-       if($flightProgram->flight_program_id){
-           return FlightProgram::find($flightProgram->flight_program_id);
-       }
-       return $flightProgram;
+        $flightProgram = FlightProgram::create($data);
+        if ($flightProgram->flight_program_id) {
+            return FlightProgram::find($flightProgram->flight_program_id);
+        }
+        return $flightProgram;
     }
 
     /**
@@ -40,9 +41,9 @@ class FlightProgramController extends Controller
      * @param  \App\Models\FlightProgram  $flightProgram
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
-    public function update(Request $request,$flightProgramUuid)
+    public function update(Request $request, $flightProgramUuid)
     {
-        $flightProgram = FlightProgram::query()->where("uuid",$flightProgramUuid)->firstOrFail();
+        $flightProgram = FlightProgram::query()->where("uuid", $flightProgramUuid)->firstOrFail();
         $flightProgram->fill($request->all());
         $flightProgram->save();
         return $flightProgram;
@@ -56,7 +57,7 @@ class FlightProgramController extends Controller
      */
     public function destroy($flightProgramUuid)
     {
-        $flightProgram = FlightProgram::query()->where("uuid",$flightProgramUuid)->firstOrFail();
+        $flightProgram = FlightProgram::query()->where("uuid", $flightProgramUuid)->firstOrFail();
         $flightProgram->delete();
         return $flightProgram;
     }
