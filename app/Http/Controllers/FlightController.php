@@ -44,7 +44,7 @@ class FlightController extends Controller
 //        ]);
         $client->sendMessage([
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_checkin_test", //your queue url goes here
-            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
+            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
         ]);
         return Flight::find($flight->id);
     }
