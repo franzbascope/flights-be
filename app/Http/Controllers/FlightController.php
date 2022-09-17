@@ -54,7 +54,7 @@ class FlightController extends Controller
         ]);
         // Nahim queue
         $client->sendMessage([
-            'QueueUrl' => " https://sqs.us-east-1.amazonaws.com/191300708619/Flights_booking", //your queue url goes here
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/Flights_booking", //your queue url goes here
             'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
         ]);
         if ($flight->flight_program_id) {
