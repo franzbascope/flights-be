@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\ProcessAddFlight;
 use App\Jobs\ProcessCanceledFlight;
 use App\Models\Flight;
+use Aws\Sqs\SqsClient;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -21,6 +22,22 @@ class FlightController extends Controller
         $data["uuid"] = uniqid("flight");
         $flight = Flight::create($data);
         ProcessAddFlight::dispatch($flight);
+        //Connect to SQS
+        $client = SqsClient::factory(array(
+
+            'credentials' => array (
+                'key' => "AKIASZCTJFEFUAFCOP76", //use your AWS key here
+                'secret' => "NbwH5V9MyfOIXjIcyScHnXHpeyvZxwvzTEdOgJqK" //use your AWS secret here
+            ),
+
+            'region' => 'us-east-1', //replace it with your region
+            'version' => 'latest'
+        ));
+
+        $client->sendMessage(array(
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flight]),
+        ));
         return Flight::find($flight->id);
     }
 
@@ -58,6 +75,21 @@ class FlightController extends Controller
         $data = $request->all();
         $flight->fill($data);
         ProcessCanceledFlight::dispatch($flight);
+        $client = SqsClient::factory(array(
+
+            'credentials' => array (
+                'key' => "AKIASZCTJFEFUAFCOP76", //use your AWS key here
+                'secret' => "NbwH5V9MyfOIXjIcyScHnXHpeyvZxwvzTEdOgJqK" //use your AWS secret here
+            ),
+
+            'region' => 'us-east-1', //replace it with your region
+            'version' => 'latest'
+        ));
+
+        $client->sendMessage(array(
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flight]),
+        ));
         return $flight;
     }
 
