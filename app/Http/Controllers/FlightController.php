@@ -21,7 +21,7 @@ class FlightController extends Controller
     {
         $data = $request->all();
         // delete previous flights for this flight program
-        Flight::query()->where("flight_program_id",$data["flight_program_id"])->delete();
+        Flight::query()->where("flight_program_id", $data["flight_program_id"])->delete();
         $data["uuid"] = uniqid("flight");
         $flight = Flight::create($data);
 
@@ -30,17 +30,21 @@ class FlightController extends Controller
         $client = SqsClient::factory([
 
             'credentials' => [
-                'key' => "AKIASZCTJFEFUAFCOP76", //use your AWS key here
-                'secret' => "NbwH5V9MyfOIXjIcyScHnXHpeyvZxwvzTEdOgJqK" //use your AWS secret here
+                'key' => "AKIASZCTJFEFTCDPNKWX", //use your AWS key here
+                'secret' => "0M/RSqmhIo8yTKDmXnVtBU1K0ASIgTCpx7lP1I9u" //use your AWS secret here
             ],
 
             'region' => 'us-east-1', //replace it with your region
             'version' => 'latest'
         ]);
         $flightProgram = FlightProgram::find($flight->flight_program_id);
+//        $client->sendMessage([
+//            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
+//            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
+//        ]);
         $client->sendMessage([
-            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
-            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_checkin_test", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
         ]);
         return Flight::find($flight->id);
     }
@@ -90,10 +94,17 @@ class FlightController extends Controller
             'version' => 'latest'
         ]);
         $flightProgram = FlightProgram::find($flight->flight_program_id);
+        // franz queue
+//        $client->sendMessage([
+//            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
+//            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
+//        ]);
+        // vacapereira queue
         $client->sendMessage([
-            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_checkin_test", //your queue url goes here
             'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
         ]);
+
         return $flight;
     }
 
