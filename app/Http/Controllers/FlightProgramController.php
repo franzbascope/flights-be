@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FlightProgram;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FlightProgramController extends Controller
 {
@@ -26,7 +27,7 @@ class FlightProgramController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data["uuid"] = uniqid("program");
+        $data["uuid"] = Str::uuid();
         $flightProgram = FlightProgram::create($data);
         if ($flightProgram->flight_program_id) {
             return FlightProgram::find($flightProgram->flight_program_id);
