@@ -8,6 +8,7 @@ use App\Models\Flight;
 use App\Models\FlightProgram;
 use Aws\Sqs\SqsClient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FlightController extends Controller
 {
@@ -22,7 +23,7 @@ class FlightController extends Controller
         $data = $request->all();
         // delete previous flights for this flight program
         Flight::query()->where("flight_program_id", $data["flight_program_id"])->delete();
-        $data["uuid"] = uniqid("flight");
+        $data["uuid"] = Str::uuid();
         $flight = Flight::create($data);
 
         ProcessAddFlight::dispatch($flight);
@@ -46,6 +47,14 @@ class FlightController extends Controller
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_checkin_test", //your queue url goes here
             'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
         ]);
+        // FACTURA QUEUE
+        $client->sendMessage([
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_factura", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
+        ]);
+        if($flight->flight_program_id){
+            return FlightProgram::find($flight->flight_program_id);
+        }
         return Flight::find($flight->id);
     }
 
@@ -102,6 +111,11 @@ class FlightController extends Controller
         // vacapereira queue
         $client->sendMessage([
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_checkin_test", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
+        ]);
+        // FACTURA QUEUE
+        $client->sendMessage([
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_factura", //your queue url goes here
             'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
         ]);
 
