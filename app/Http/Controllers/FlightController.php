@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\ProcessAddFlight;
 use App\Jobs\ProcessCanceledFlight;
 use App\Models\Flight;
+use App\Models\FlightProgram;
 use Aws\Sqs\SqsClient;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,11 @@ class FlightController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // delete previous flights for this flight program
+        Flight::query()->where("flight_program_id",$data["flight_program_id"])->delete();
         $data["uuid"] = uniqid("flight");
         $flight = Flight::create($data);
+
         ProcessAddFlight::dispatch($flight);
         //Connect to SQS
         $client = SqsClient::factory([
@@ -33,10 +37,10 @@ class FlightController extends Controller
             'region' => 'us-east-1', //replace it with your region
             'version' => 'latest'
         ]);
-
+        $flightProgram = FlightProgram::find($flight->flight_program_id);
         $client->sendMessage([
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
-            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flight]),
+            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
         ]);
         return Flight::find($flight->id);
     }
@@ -85,10 +89,10 @@ class FlightController extends Controller
             'region' => 'us-east-1', //replace it with your region
             'version' => 'latest'
         ]);
-
+        $flightProgram = FlightProgram::find($flight->flight_program_id);
         $client->sendMessage([
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights", //your queue url goes here
-            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flight]),
+            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
         ]);
         return $flight;
     }
