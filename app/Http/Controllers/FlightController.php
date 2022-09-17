@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ProcessAddFlight;
+use App\Jobs\ProcessCanceledFlight;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 
@@ -56,6 +57,7 @@ class FlightController extends Controller
         $flight = Flight::query()->where("uuid", $flightUuid)->firstOrFail();
         $data = $request->all();
         $flight->fill($data);
+        ProcessCanceledFlight::dispatch($flight);
         return $flight;
     }
 
