@@ -52,7 +52,12 @@ class FlightController extends Controller
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_factura", //your queue url goes here
             'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
         ]);
-        if($flight->flight_program_id){
+        // Nahim queue
+        $client->sendMessage([
+            'QueueUrl' => " https://sqs.us-east-1.amazonaws.com/191300708619/Flights_booking", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCreated","data"=> $flightProgram]),
+        ]);
+        if ($flight->flight_program_id) {
             return FlightProgram::find($flight->flight_program_id);
         }
         return Flight::find($flight->id);
@@ -116,6 +121,11 @@ class FlightController extends Controller
         // FACTURA QUEUE
         $client->sendMessage([
             'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/flights_factura", //your queue url goes here
+            'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
+        ]);
+        // Nahim queue
+        $client->sendMessage([
+            'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/191300708619/Flights_booking", //your queue url goes here
             'MessageBody' =>  json_encode(["event"=>"FlightCancelled","data"=> $flightProgram]),
         ]);
 
