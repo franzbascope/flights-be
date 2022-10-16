@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $startTime
+ * @property string $endTime
+ * @property string $crewUuid
+ * @property string $aircraftUuid
+ * @property string $status
+ * @property int $flightProgramId
+ * @property string $information
+ */
+class Flight extends Model
+{
+    use HasFactory;
+
+    protected $casts = [
+        'information' => 'json',
+    ];
+}
