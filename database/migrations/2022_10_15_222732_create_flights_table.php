@@ -21,7 +21,7 @@ return new class () extends Migration {
             $table->string("aircraftUuid");
             $table->string("status");
             $table->integer("flightProgramId");
-            $table->string("information");
+            $table->text("information");
         });
     }
 
