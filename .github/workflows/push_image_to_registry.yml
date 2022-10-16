@@ -20,7 +20,7 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag franz2897/flights:$(date +%s)
+        run: docker build . --file Dockerfile --tag franz2897/flights
 
       - name: Docker Push
         run: docker push franz2897/flights
