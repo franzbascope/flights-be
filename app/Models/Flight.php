@@ -5,14 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $startTime
+ * @property string $endTime
+ * @property string $crewUuid
+ * @property string $aircraftUuid
+ * @property string $status
+ * @property int $flightProgramId
+ * @property string $information
+ */
 class Flight extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["startTime","endTime","crew","aircraft","uuid","flight_program_id","unique_code","status","information"];
     protected $casts = [
-        'aircraft' => 'array',
-        'crew' => 'array',
-        'information' => 'array',
+        'information' => 'json',
     ];
 }
