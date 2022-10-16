@@ -7,7 +7,7 @@ use Aws\CognitoIdentityProvider\CognitoIdentityProviderClient;
 
 class LoginHandler implements \App\FlightsDomain\Repository\ILoginHandler
 {
-    const AUTH_FLOW = 'USER_PASSWORD_AUTH';
+    public const AUTH_FLOW = 'USER_PASSWORD_AUTH';
 
     private string $cognitoClientId;
     private string $userPoolId;

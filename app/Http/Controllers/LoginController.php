@@ -19,17 +19,18 @@ class LoginController extends Controller
     }
 
 
-    public function login(Request $request){
-        try{
+    public function login(Request $request)
+    {
+        try {
             $request->validate([
                 "username" => "required",
                 "password"=> "required"
             ]);
             $username = $request->get("username");
             $password = $request->get("password");
-            return $this->loginHandler->login($username,$password);
-        }catch (CognitoIdentityProviderException $exception){
-            return response(["message"=>"credentials not valid"],401);
+            return $this->loginHandler->login($username, $password);
+        } catch (CognitoIdentityProviderException $exception) {
+            return response(["message"=>"credentials not valid"], 401);
         }
     }
 }
