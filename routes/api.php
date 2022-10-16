@@ -21,3 +21,4 @@ Route::post('/itinerary',[\App\Http\Controllers\ItineraryController::class,'stor
 Route::post('/flight_program',[\App\Http\Controllers\FlightProgramController::class,'store'])->name("flight_program.store");
 Route::post('/flight',[\App\Http\Controllers\FlightController::class,'store'])->name("flight.store");
 Route::patch('/flight/{id}',[\App\Http\Controllers\FlightController::class,'cancel'])->name("flight.cancel");
+Route::post('/login',[\App\Http\Controllers\LoginController::class,"login"])->name("login.login");

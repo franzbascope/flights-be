@@ -10,11 +10,13 @@ use App\FlightsDomain\Repository\IEventPublisher;
 use App\FlightsDomain\Repository\IFlightProgramRepository;
 use App\FlightsDomain\Repository\IFlightRepository;
 use App\FlightsDomain\Repository\IItineraryRepository;
+use App\FlightsDomain\Repository\ILoginHandler;
 use App\FlightsDomain\Repository\IUnitOfWork;
 use App\FlightsInfrastructure\EventPublisher;
 use App\FlightsInfrastructure\Repository\FlightProgramRepository;
 use App\FlightsInfrastructure\Repository\FlightRepository;
 use App\FlightsInfrastructure\Repository\ItineraryRepository;
+use App\FlightsInfrastructure\Repository\LoginHandler;
 use App\FlightsInfrastructure\UnitOfWork;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         IFlightProgramRepository::class => FlightProgramRepository::class,
         IEventPublisher::class => EventPublisher::class,
         IFlightRepository::class => FlightRepository::class,
+        ILoginHandler::class => LoginHandler::class,
     ];
 
 
