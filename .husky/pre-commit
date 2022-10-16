@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+composer run lint:fix
+composer run lint:dry
+exitCode="$?"
+echo $exitCode
+if [ $exitCode != 0 ]; then
+    echo "linting error, husky - $hook_name hook exited with code $exitCode (error)"
+    exit $exitCode
+fi
+composer run test
+testExitCode="$?"
+echo $testExitCode
+if [ $testExitCode != 0 ]; then
+    echo "linting error, husky - $hook_name hook exited with code $testExitCode (error)"
+    exit $testExitCode
+fi
+exit 0
