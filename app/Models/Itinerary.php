@@ -12,9 +12,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $uuid
  * @property string $sourceAirport
  * @property string $destinyAirport
- * @property int|null $itinerary_id
  */
-class FlightProgram extends Model
+class Itinerary extends Model
 {
     use HasFactory;
+
+    protected $table = 'itineraries';
+
+    protected $fillable = ['sourceAirport','destinyAirport','uuid'];
 }

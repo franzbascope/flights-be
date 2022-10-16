@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,8 +12,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('flights', function (Blueprint $table) {
-            $table->tinyInteger("flightCanceledNotified")->default(0);
+        Schema::create('itineraries', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string("uuid");
+            $table->string("sourceAirport");
+            $table->string("destinyAirport");
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('flights', function (Blueprint $table) {
-            $table->dropColumn("flightCanceledNotified");
-        });
+        Schema::dropIfExists('itineraries');
     }
 };

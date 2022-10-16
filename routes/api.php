@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('flights',[\App\Http\Controllers\FlightsController::class,'index']);
-Route::post('flights',[\App\Http\Controllers\FlightsController::class,'store']);
-Route::resource("flight_programs",\App\Http\Controllers\FlightProgramController::class);
-Route::resource("flights",\App\Http\Controllers\FlightController::class);
-Route::patch("flights/cancel/{flightUuid}",[\App\Http\Controllers\FlightController::class,'cancelFlight']);
+Route::post('/itinerary',[\App\Http\Controllers\ItineraryController::class,'store'])->name("itinerary.store");
+Route::post('/flight_program',[\App\Http\Controllers\FlightProgramController::class,'store'])->name("flight_program.store");
+Route::post('/flight',[\App\Http\Controllers\FlightController::class,'store'])->name("flight.store");
+Route::patch('/flight/{id}',[\App\Http\Controllers\FlightController::class,'cancel'])->name("flight.cancel");
