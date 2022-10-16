@@ -8,5 +8,4 @@ class TestController
     {
         return [];
     }
-
 }
