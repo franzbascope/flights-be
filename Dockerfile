@@ -51,6 +51,8 @@ RUN cp docker/nginx.conf /etc/nginx/sites-enabled/default
 RUN mkdir /var/log/php
 RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log  && chmod -R 777 /var/www/storage  && chmod -R 777 /var/www/database
 
+RUN chmod 777 /var/www/storage
+
 # Deployment steps
 RUN composer install --optimize-autoloader --no-dev
 RUN chmod +x /var/www/docker/run.sh
