@@ -35,6 +35,7 @@
                     @endauth
                 </div>
             @endif
+            <h2>Franz estuvo aqui</h2>
             <h1>Que paso Ingeniero</h1>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
