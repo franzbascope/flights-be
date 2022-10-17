@@ -35,12 +35,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
+# Add user for laravel application
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy code to /var/www
-COPY  . /var/www
+COPY --chown=www:www-data . /var/www
 
-
+# add root to www group
+RUN chmod -R ug+w /var/www/storage
 
 # Copy nginx/php/supervisor configs
 RUN cp docker/supervisor.conf /etc/supervisord.conf
@@ -49,9 +52,7 @@ RUN cp docker/nginx.conf /etc/nginx/sites-enabled/default
 
 # PHP Error Log Files
 RUN mkdir /var/log/php
-RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log  && chmod -R 777 /var/www/storage  && chmod -R 777 /var/www/database
-
-RUN chmod 777 /var/www/storage/logs
+RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 
 # Deployment steps
 RUN composer install --optimize-autoloader --no-dev
