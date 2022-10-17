@@ -42,6 +42,9 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Copy code to /var/www
 COPY --chown=www:www-data . /var/www
 
+RUN chown -R www-data:www-data /var/www
+
+
 # add root to www group
 RUN chmod -R ug+w /var/www/storage
 
