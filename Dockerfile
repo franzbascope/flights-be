@@ -40,7 +40,7 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy code to /var/www
-COPY --chown=www:www-data . /var/www
+COPY . /var/www
 
 # add root to www group
 RUN chmod -R ug+w /var/www/storage
@@ -52,7 +52,7 @@ RUN cp docker/nginx.conf /etc/nginx/sites-enabled/default
 
 # PHP Error Log Files
 RUN mkdir /var/log/php
-RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
+RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log && chmod 777 /var/www/storage/logs
 
 # Deployment steps
 RUN composer install --optimize-autoloader --no-dev
