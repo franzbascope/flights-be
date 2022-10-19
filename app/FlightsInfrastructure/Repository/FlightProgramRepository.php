@@ -26,7 +26,7 @@ class FlightProgramRepository implements IFlightProgramRepository
 
     public function query($query = null)
     {
-        if($query){
+        if ($query) {
             return $query->get();
         }
         return FlightProgram::query()->with(["flights"])->get();

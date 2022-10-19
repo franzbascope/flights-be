@@ -14,7 +14,7 @@ class QueryFlightProgramCommand
      * @param string $sourceAirport
      * @param string $destinyAirport
      */
-    public function __construct(string $sourceAirport, string $destinyAirport,bool $includeFlights)
+    public function __construct(string $sourceAirport, string $destinyAirport, bool $includeFlights)
     {
         $this->sourceAirport = $sourceAirport;
         $this->destinyAirport = $destinyAirport;
@@ -46,8 +46,4 @@ class QueryFlightProgramCommand
     {
         return $this->destinyAirport;
     }
-
-
-
-
 }

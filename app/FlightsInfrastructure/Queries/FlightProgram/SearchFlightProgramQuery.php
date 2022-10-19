@@ -21,18 +21,18 @@ class SearchFlightProgramQuery
     }
 
 
-    public function getQuery():Builder{
+    public function getQuery(): Builder
+    {
         $query = FlightProgram::query();
-        if($this->command->getSourceAirport()){
-            $query->where("sourceAirport",$this->command->getSourceAirport());
+        if ($this->command->getSourceAirport()) {
+            $query->where("sourceAirport", $this->command->getSourceAirport());
         }
-        if($this->command->getDestinyAirport()){
-            $query->where("destinyAirport",$this->command->getDestinyAirport());
+        if ($this->command->getDestinyAirport()) {
+            $query->where("destinyAirport", $this->command->getDestinyAirport());
         }
-        if($this->command->isIncludeFlights()){
+        if ($this->command->isIncludeFlights()) {
             $query->with("flights");
         }
         return $query;
     }
-
 }
