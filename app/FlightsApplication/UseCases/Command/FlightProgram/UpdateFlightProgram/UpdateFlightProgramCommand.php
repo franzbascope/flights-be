@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class UpdateFlightProgramCommand
 {
-   private array $data;
-   private int $id;
+    private array $data;
+    private int $id;
 
     /**
      * @param array $data
@@ -34,8 +34,4 @@ class UpdateFlightProgramCommand
     {
         return $this->id;
     }
-
-
-
-
 }

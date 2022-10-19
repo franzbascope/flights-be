@@ -13,7 +13,7 @@ interface IFlightProgramRepository
 
     public function query(Builder $query = null);
 
-    public function update(array $data,int $id);
+    public function update(array $data, int $id);
 
     public function delete(int $flightProgramId);
 }

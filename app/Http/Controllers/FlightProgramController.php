@@ -48,7 +48,7 @@ class FlightProgramController extends Controller
         return $this->commandBus->handle($command);
     }
 
-    public function destroy( $id)
+    public function destroy($id)
     {
         $command = new DeleteFlightProgramCommand($id);
         return $this->commandBus->handle($command);

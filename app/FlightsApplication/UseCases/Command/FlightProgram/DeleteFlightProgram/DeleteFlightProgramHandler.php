@@ -21,5 +21,4 @@ class DeleteFlightProgramHandler
     {
         return $this->flightProgramRepository->delete($command->getFlightProgramId());
     }
-
 }

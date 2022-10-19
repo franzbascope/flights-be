@@ -6,7 +6,6 @@ use App\FlightsDomain\Repository\IFlightProgramRepository;
 
 class UpdateFlightProgramHandler
 {
-
     private IFlightProgramRepository $flightProgramRepository;
 
     /**
@@ -20,6 +19,6 @@ class UpdateFlightProgramHandler
 
     public function __invoke(UpdateFlightProgramCommand $command)
     {
-        return $this->flightProgramRepository->update($command->getData(),$command->getId());
+        return $this->flightProgramRepository->update($command->getData(), $command->getId());
     }
 }
