@@ -20,7 +20,8 @@ class FlightProgram extends Model
 
     protected $with = ['flights'];
 
-    public function flights(){
-        return $this->hasMany(Flight::class,"flightProgramId");
+    public function flights()
+    {
+        return $this->hasMany(Flight::class, "flightProgramId");
     }
 }

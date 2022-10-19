@@ -15,6 +15,4 @@ class QueryFlightProgramCommand
     {
         $this->request = $request;
     }
-
-
 }

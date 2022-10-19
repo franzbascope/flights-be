@@ -25,7 +25,8 @@ class Flight extends Model
         'information' => 'json',
     ];
 
-    public function flightProgram(){
-        return $this->belongsTo(FlightProgram::class,"flightProgramId");
+    public function flightProgram()
+    {
+        return $this->belongsTo(FlightProgram::class, "flightProgramId");
     }
 }

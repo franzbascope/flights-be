@@ -9,7 +9,6 @@ use Aws\Sqs\SqsClient;
 
 class EventPublisher implements IEventPublisher
 {
-
     public function publish(DomainEvent $event)
     {
         $client = $this->getSqsClient();

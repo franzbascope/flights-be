@@ -6,7 +6,6 @@ use App\FlightsDomain\Repository\IFlightProgramRepository;
 
 class QueryFlightProgramHandler
 {
-
     private IFlightProgramRepository $flightProgramRepository;
 
     /**
@@ -21,7 +20,5 @@ class QueryFlightProgramHandler
     public function __invoke(QueryFlightProgramCommand $command)
     {
         return $this->flightProgramRepository->query(null);
-
     }
-
 }

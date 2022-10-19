@@ -15,6 +15,4 @@ class QueryFlightsCommand
     {
         $this->request = $request;
     }
-
-
 }

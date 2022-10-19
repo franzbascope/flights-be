@@ -7,7 +7,6 @@ use App\FlightsDomain\Repository\IFlightRepository;
 
 class QueryFlightsHandler
 {
-
     private IFlightRepository $flightRepository;
 
     /**
@@ -22,7 +21,5 @@ class QueryFlightsHandler
     public function __invoke(QueryFlightsCommand $command)
     {
         return $this->flightRepository->query(null);
-
     }
-
 }

@@ -17,7 +17,7 @@ class DomainEvent
      * @param array $data
      * @param string $name
      */
-    public function __construct(\DateTime $created_at, array $data, string $name,string $topic)
+    public function __construct(\DateTime $created_at, array $data, string $name, string $topic)
     {
         $this->created_at = $created_at;
         $this->uuid = Str::uuid();

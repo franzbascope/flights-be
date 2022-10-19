@@ -29,7 +29,8 @@ class FlightController extends Controller
         return response($flight);
     }
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $command = new QueryFlightsCommand($request);
         $data = $this->commandBus->handle($command);
         return response($data);

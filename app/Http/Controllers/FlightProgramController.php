@@ -30,7 +30,8 @@ class FlightProgramController extends Controller
         return response($itinerary);
     }
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $command = new QueryFlightProgramCommand($request);
         $data = $this->commandBus->handle($command);
         return response($data);
