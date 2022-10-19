@@ -6,6 +6,7 @@ use App\FlightsDomain\Factories\FlightFactory;
 use App\FlightsDomain\Model\DomainEvent;
 use App\FlightsDomain\Repository\IFlightRepository;
 use App\FlightsDomain\Repository\IUnitOfWork;
+use App\FlightsInfrastructure\Events\FlightCreatedEvent;
 use Illuminate\Support\Facades\Log;
 
 class CreateFlightHandler
@@ -29,7 +30,12 @@ class CreateFlightHandler
     private function getCreatedFlightEvent($flightId): DomainEvent
     {
         $flight = $this->flightRepository->getById($flightId);
-        return new DomainEvent(new \DateTime(), $flight->toArray(), "flightCreated");
+        $flightProgram =$flight->flightProgram;
+        $data = [
+          "flight_program" => $flightProgram,
+          "flight" => $flight
+        ];
+        return new FlightCreatedEvent($data);
     }
 
 

@@ -32,4 +32,9 @@ class FlightRepository implements IFlightRepository
         $flight->fill($flight);
         $flight->save();
     }
+
+    public function query($query)
+    {
+        return \App\Models\Flight::query()->get();
+    }
 }

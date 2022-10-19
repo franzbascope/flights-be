@@ -9,4 +9,6 @@ interface IFlightProgramRepository
     public function create(FlightProgram $itinerary);
 
     public function getById(int $id);
+
+    public function query($query = null);
 }

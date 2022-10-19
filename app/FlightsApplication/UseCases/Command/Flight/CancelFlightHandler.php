@@ -5,6 +5,7 @@ namespace App\FlightsApplication\UseCases\Command\Flight;
 use App\FlightsDomain\Model\DomainEvent;
 use App\FlightsDomain\Repository\IFlightRepository;
 use App\FlightsDomain\Repository\IUnitOfWork;
+use App\FlightsInfrastructure\Events\FlightCancelled;
 use Illuminate\Support\Facades\Log;
 
 class CancelFlightHandler
@@ -25,7 +26,12 @@ class CancelFlightHandler
     private function getCancelFlightEvent($flightId): DomainEvent
     {
         $flight = $this->flightRepository->getById($flightId);
-        return new DomainEvent(new \DateTime(), $flight->toArray(), "flightCanceled");
+        $flightProgram =$flight->flightProgram;
+        $data = [
+            "flight_program" => $flightProgram,
+            "flight" => $flight
+        ];
+        return new FlightCancelled($data);
     }
 
     /**

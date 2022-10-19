@@ -24,4 +24,8 @@ class Flight extends Model
     protected $casts = [
         'information' => 'json',
     ];
+
+    public function flightProgram(){
+        return $this->belongsTo(FlightProgram::class,"flightProgramId");
+    }
 }

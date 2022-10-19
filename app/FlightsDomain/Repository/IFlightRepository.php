@@ -11,4 +11,6 @@ interface IFlightRepository
     public function update(Flight $flight, int $flightId);
 
     public function getById(int $id);
+
+    public function query($query);
 }

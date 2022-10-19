@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FlightsApplication\UseCases\Command\CommandBus;
 use App\FlightsApplication\UseCases\Command\FlightProgram\CreateFlightProgram\CreateFlightProgramCommand;
+use App\FlightsApplication\UseCases\Command\FlightProgram\QueryFlightPrograms\QueryFlightProgramCommand;
 use Illuminate\Http\Request;
 
 class FlightProgramController extends Controller
@@ -27,5 +28,11 @@ class FlightProgramController extends Controller
         $command = new CreateFlightProgramCommand($sourceAirport, $destinyAirport, $itineraryId);
         $itinerary = $this->commandBus->handle($command);
         return response($itinerary);
+    }
+
+    public function index(Request $request){
+        $command = new QueryFlightProgramCommand($request);
+        $data = $this->commandBus->handle($command);
+        return response($data);
     }
 }

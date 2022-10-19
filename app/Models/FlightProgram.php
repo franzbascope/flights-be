@@ -17,4 +17,10 @@ use Illuminate\Database\Eloquent\Model;
 class FlightProgram extends Model
 {
     use HasFactory;
+
+    protected $with = ['flights'];
+
+    public function flights(){
+        return $this->hasMany(Flight::class,"flightProgramId");
+    }
 }

@@ -22,4 +22,9 @@ class FlightProgramRepository implements IFlightProgramRepository
     {
         return \App\Models\FlightProgram::find($id);
     }
+
+    public function query($query = null)
+    {
+        return \App\Models\FlightProgram::query()->with(["flights"])->get();
+    }
 }
