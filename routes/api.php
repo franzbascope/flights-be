@@ -18,11 +18,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/itinerary',[\App\Http\Controllers\ItineraryController::class,'store'])->name("itinerary.store");
+
+//Flight Programs
 Route::post('/flight_program',[\App\Http\Controllers\FlightProgramController::class,'store'])->name("flight_program.store");
 Route::get('/flight_program',[\App\Http\Controllers\FlightProgramController::class,'index'])->name("flight_program.index");
 Route::put('/flight_program/{id}',[\App\Http\Controllers\FlightProgramController::class,'update'])->name("flight_program.update");
 Route::delete('/flight_program/{id}',[\App\Http\Controllers\FlightProgramController::class,'destroy'])->name("flight_program.destroy");
+
+//Flights
 Route::post('/flight',[\App\Http\Controllers\FlightController::class,'store'])->name("flight.store");
 Route::get('/flight',[\App\Http\Controllers\FlightController::class,'index'])->name("flight.index");
 Route::patch('/flight/{id}',[\App\Http\Controllers\FlightController::class,'cancel'])->name("flight.cancel");
+Route::delete('/flight/{id}',[\App\Http\Controllers\FlightController::class,'destroy'])->name("flight.destroy");
+
+// Auth
 Route::post('/login',[\App\Http\Controllers\LoginController::class,"login"])->name("login.login");

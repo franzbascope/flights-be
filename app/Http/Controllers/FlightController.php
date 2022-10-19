@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FlightsApplication\UseCases\Command\CommandBus;
 use App\FlightsApplication\UseCases\Command\Flight\CancelFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\CreateFlightCommand;
+use App\FlightsApplication\UseCases\Command\Flight\DeleteFlight\DeleteFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\QueryFlights\QueryFlightsCommand;
 use App\Models\Flight;
 use Illuminate\Http\Request;
@@ -48,5 +49,11 @@ class FlightController extends Controller
         $command = new CancelFlightCommand($flightId);
         $flight =  $this->commandBus->handle($command);
         return response($flight);
+    }
+
+    public function destroy($flightId){
+        $command = new DeleteFlightCommand($flightId);
+        return $this->commandBus->handle($command);
+
     }
 }

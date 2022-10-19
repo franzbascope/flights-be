@@ -4,6 +4,7 @@ namespace App\FlightsApplication\UseCases\Command\Flight\QueryFlights;
 
 use App\FlightsDomain\Repository\IFlightProgramRepository;
 use App\FlightsDomain\Repository\IFlightRepository;
+use App\FlightsInfrastructure\Queries\Fligth\SearchFlightsQuery;
 
 class QueryFlightsHandler
 {
@@ -20,6 +21,7 @@ class QueryFlightsHandler
 
     public function __invoke(QueryFlightsCommand $command)
     {
-        return $this->flightRepository->query(null);
+        $query = (new SearchFlightsQuery($command->request))->getQuery();
+        return $this->flightRepository->query($query);
     }
 }
