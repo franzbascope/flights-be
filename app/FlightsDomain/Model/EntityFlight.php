@@ -4,7 +4,7 @@ namespace App\FlightsDomain\Model;
 
 use App\FlightsDomain\ValueObjects\FlightStatus;
 
-class Flight extends Entity
+class EntityFlight extends Entity
 {
     private \DateTime $startTime;
     private \DateTime $endTime;

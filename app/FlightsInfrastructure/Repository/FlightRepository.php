@@ -2,12 +2,12 @@
 
 namespace App\FlightsInfrastructure\Repository;
 
-use App\FlightsDomain\Model\Flight;
+use App\FlightsDomain\Model\EntityFlight;
 use App\FlightsDomain\Repository\IFlightRepository;
 
 class FlightRepository implements IFlightRepository
 {
-    public function create(Flight $flight)
+    public function create(EntityFlight $flight)
     {
         $dbFlight = new \App\Models\Flight();
         $dbFlight->information = $flight->getInformation();
@@ -27,7 +27,7 @@ class FlightRepository implements IFlightRepository
         return \App\Models\Flight::find($id);
     }
 
-    public function update(Flight $flight, int $flightId)
+    public function update(EntityFlight $flight, int $flightId)
     {
         $flight = \App\Models\Flight::find($flightId);
         $flight->fill($flight);

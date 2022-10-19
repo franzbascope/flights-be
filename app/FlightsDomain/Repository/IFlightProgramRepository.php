@@ -2,11 +2,11 @@
 
 namespace App\FlightsDomain\Repository;
 
-use App\FlightsDomain\Model\FlightProgram;
+use App\FlightsDomain\Model\EntityFlightProgram;
 
 interface IFlightProgramRepository
 {
-    public function create(FlightProgram $itinerary);
+    public function create(EntityFlightProgram $itinerary);
 
     public function getById(int $id);
 

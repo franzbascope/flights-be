@@ -2,12 +2,12 @@
 
 namespace App\FlightsInfrastructure\Repository;
 
-use App\FlightsDomain\Model\Itinerary;
+use App\FlightsDomain\Model\EntityItinerary;
 use App\FlightsDomain\Repository\IItineraryRepository;
 
 class ItineraryRepository implements IItineraryRepository
 {
-    public function create(Itinerary $itinerary)
+    public function create(EntityItinerary $itinerary)
     {
         $dbItinerary = new \App\Models\Itinerary();
         $dbItinerary->uuid = $itinerary->getUuid();

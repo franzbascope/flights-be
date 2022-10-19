@@ -4,7 +4,7 @@ namespace App\FlightsDomain\Model;
 
 use App\FlightsDomain\ValueObjects\AirportCode;
 
-class Itinerary extends Entity
+class EntityItinerary extends Entity
 {
     private string $sourceAirport;
     private string $destinyAirport;

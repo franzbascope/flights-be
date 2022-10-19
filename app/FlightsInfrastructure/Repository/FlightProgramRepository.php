@@ -2,12 +2,12 @@
 
 namespace App\FlightsInfrastructure\Repository;
 
-use App\FlightsDomain\Model\FlightProgram;
+use App\FlightsDomain\Model\EntityFlightProgram;
 use App\FlightsDomain\Repository\IFlightProgramRepository;
 
 class FlightProgramRepository implements IFlightProgramRepository
 {
-    public function create(FlightProgram $flightProgram)
+    public function create(EntityFlightProgram $flightProgram)
     {
         $dbFlightProgram = new \App\Models\FlightProgram();
         $dbFlightProgram->sourceAirport =  $flightProgram->getSourceAirport();
