@@ -37,7 +37,9 @@ class FlightProgramController extends Controller
         $sourceAirportCode = $request->get("sourceAirport") ?? "";
         $destinyAirportCode = $request->get("destinyAirport") ?? "";
         $includeFlights = $request->get("includeFlights") ?? false;
-        $command = new QueryFlightProgramCommand($sourceAirportCode, $destinyAirportCode, $includeFlights);
+        $flightProgramId =  $request->get("flightProgramId") ;
+        $flightProgramId = $flightProgramId ? intval($flightProgramId) : null;
+        $command = new QueryFlightProgramCommand($sourceAirportCode, $destinyAirportCode, $includeFlights, $flightProgramId);
         $data = $this->commandBus->handle($command);
         return response($data);
     }
