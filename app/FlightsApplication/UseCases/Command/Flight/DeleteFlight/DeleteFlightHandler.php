@@ -6,7 +6,6 @@ use App\FlightsDomain\Repository\IFlightRepository;
 
 class DeleteFlightHandler
 {
-
     private IFlightRepository $flightRepository;
 
     /**
@@ -22,5 +21,4 @@ class DeleteFlightHandler
     {
         return $this->flightRepository->delete($command->getFlightId());
     }
-
 }

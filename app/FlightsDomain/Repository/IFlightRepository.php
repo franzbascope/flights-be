@@ -12,9 +12,9 @@ interface IFlightRepository
 
     public function update(EntityFlight $flight, int $flightId);
 
-    public function getById(int $id) :?Model;
+    public function getById(int $id): ?Model;
 
     public function query(Builder $query);
 
-    public function delete(int $id):Model;
+    public function delete(int $id): Model;
 }

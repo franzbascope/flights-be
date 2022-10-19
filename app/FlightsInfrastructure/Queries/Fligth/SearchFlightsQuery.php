@@ -18,11 +18,10 @@ class SearchFlightsQuery extends MainQuery
         $this->request = $request;
     }
 
-    public function getQuery(){
+    public function getQuery()
+    {
         $query =  Flight::query();
         $properties = ["startTime","endTime","startDate","endDate","status","flightProgramId","flightId"];
-        return $this->buildQueryFromRequest($query,$properties,$this->request);
+        return $this->buildQueryFromRequest($query, $properties, $this->request);
     }
-
-
 }

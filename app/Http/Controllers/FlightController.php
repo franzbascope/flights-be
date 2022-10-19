@@ -51,9 +51,9 @@ class FlightController extends Controller
         return response($flight);
     }
 
-    public function destroy($flightId){
+    public function destroy($flightId)
+    {
         $command = new DeleteFlightCommand($flightId);
         return $this->commandBus->handle($command);
-
     }
 }

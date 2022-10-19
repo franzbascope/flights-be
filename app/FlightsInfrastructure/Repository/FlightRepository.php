@@ -26,7 +26,7 @@ class FlightRepository implements IFlightRepository
         return $this->getById($dbFlight->id);
     }
 
-    public function getById(int $id) : ?Model
+    public function getById(int $id): ?Model
     {
         return Flight::find($id);
     }
@@ -40,7 +40,7 @@ class FlightRepository implements IFlightRepository
 
     public function query(Builder $query = null)
     {
-        if($query){
+        if ($query) {
             return $query->get();
         }
         return Flight::query()->get();
@@ -49,7 +49,7 @@ class FlightRepository implements IFlightRepository
     public function delete(int $id): Model
     {
         $flight = $this->getById($id);
-        if(!$flight){
+        if (!$flight) {
             throw new ItemNotFoundException("Flight with id: $id could not be found");
         }
         $flight->delete();

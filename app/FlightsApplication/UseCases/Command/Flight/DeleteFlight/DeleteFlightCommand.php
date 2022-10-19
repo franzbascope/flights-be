@@ -4,7 +4,6 @@ namespace App\FlightsApplication\UseCases\Command\Flight\DeleteFlight;
 
 class DeleteFlightCommand
 {
-
     private int $flightId;
 
     /**
@@ -22,8 +21,4 @@ class DeleteFlightCommand
     {
         return $this->flightId;
     }
-
-
-
-
 }
