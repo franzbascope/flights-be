@@ -15,7 +15,7 @@ class QueryFlightProgramCommand
      * @param string $sourceAirport
      * @param string $destinyAirport
      */
-    public function __construct(string $sourceAirport, string $destinyAirport, bool $includeFlights,?int $flightProgramId)
+    public function __construct(string $sourceAirport, string $destinyAirport, bool $includeFlights, ?int $flightProgramId)
     {
         $this->sourceAirport = $sourceAirport;
         $this->destinyAirport = $destinyAirport;

@@ -33,8 +33,8 @@ class SearchFlightProgramQuery
         if ($this->command->isIncludeFlights()) {
             $query->with("flights");
         }
-        if($this->command->getFlightProgramId()){
-            $query->where("id",$this->command->getFlightProgramId());
+        if ($this->command->getFlightProgramId()) {
+            $query->where("id", $this->command->getFlightProgramId());
         }
         return $query;
     }
