@@ -3,6 +3,7 @@
 namespace App\FlightsApplication\UseCases\Command\FlightProgram\QueryFlightPrograms;
 
 use App\FlightsDomain\Repository\IFlightProgramRepository;
+use App\FlightsInfrastructure\Queries\FlightProgram\SearchFlightProgramQuery;
 
 class QueryFlightProgramHandler
 {
@@ -19,6 +20,7 @@ class QueryFlightProgramHandler
 
     public function __invoke(QueryFlightProgramCommand $command)
     {
-        return $this->flightProgramRepository->query(null);
+        $searchFlightProgramsQuery = new SearchFlightProgramQuery($command);
+        return $this->flightProgramRepository->query($searchFlightProgramsQuery->getQuery());
     }
 }

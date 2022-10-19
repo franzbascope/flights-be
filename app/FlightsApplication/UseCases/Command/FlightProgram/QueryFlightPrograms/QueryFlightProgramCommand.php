@@ -6,13 +6,48 @@ use Illuminate\Http\Request;
 
 class QueryFlightProgramCommand
 {
-    public Request $request;
+    private string $sourceAirport;
+    private string $destinyAirport;
+    private bool $includeFlights;
 
     /**
-     * @param Request $request
+     * @param string $sourceAirport
+     * @param string $destinyAirport
      */
-    public function __construct(Request $request)
+    public function __construct(string $sourceAirport, string $destinyAirport,bool $includeFlights)
     {
-        $this->request = $request;
+        $this->sourceAirport = $sourceAirport;
+        $this->destinyAirport = $destinyAirport;
+        $this->includeFlights = $includeFlights;
     }
+
+    /**
+     * @return bool
+     */
+    public function isIncludeFlights(): bool
+    {
+        return $this->includeFlights;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getSourceAirport(): string
+    {
+        return $this->sourceAirport;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestinyAirport(): string
+    {
+        return $this->destinyAirport;
+    }
+
+
+
+
 }
