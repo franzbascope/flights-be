@@ -17,6 +17,7 @@ class FlightRepository implements IFlightRepository
         $dbFlight->startTime = $flight->getStartTime();
         $dbFlight->endTime = $flight->getEndTime();
         $dbFlight->status = "active";
+        $dbFlight->uuid = $flight->getUuid();
         $dbFlight->save();
         return $this->getById($dbFlight->id);
     }

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $startTime
  * @property string $endTime
+ * @property string $uuid
  * @property string $crewUuid
  * @property string $aircraftUuid
  * @property string $status

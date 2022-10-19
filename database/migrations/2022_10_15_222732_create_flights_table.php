@@ -17,6 +17,7 @@ return new class () extends Migration {
             $table->timestamps();
             $table->dateTime("startTime");
             $table->dateTime("endTime");
+            $table->string("uuid");
             $table->string("crewUuid");
             $table->string("aircraftUuid");
             $table->string("status");
