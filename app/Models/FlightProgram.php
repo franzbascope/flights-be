@@ -18,6 +18,8 @@ class FlightProgram extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["sourceAirport","destinyAirport"];
+
     public function flights()
     {
         return $this->hasMany(Flight::class, "flightProgramId");

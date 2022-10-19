@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\FlightsApplication\UseCases\Command\CommandBus;
 use App\FlightsApplication\UseCases\Command\FlightProgram\CreateFlightProgram\CreateFlightProgramCommand;
+use App\FlightsApplication\UseCases\Command\FlightProgram\DeleteFlightProgram\DeleteFlightProgramCommand;
 use App\FlightsApplication\UseCases\Command\FlightProgram\QueryFlightPrograms\QueryFlightProgramCommand;
+use App\FlightsApplication\UseCases\Command\FlightProgram\UpdateFlightProgram\UpdateFlightProgramCommand;
 use Illuminate\Http\Request;
 
 class FlightProgramController extends Controller
@@ -16,7 +18,7 @@ class FlightProgramController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -32,11 +34,23 @@ class FlightProgramController extends Controller
 
     public function index(Request $request)
     {
-        $sourceAirportCode = $request->get("sourceAirport");
-        $destinyAirportCode = $request->get("destinyAirport");
-        $includeFlights = $request->get("includeFlights");
+        $sourceAirportCode = $request->get("sourceAirport") ?? "";
+        $destinyAirportCode = $request->get("destinyAirport") ?? "";
+        $includeFlights = $request->get("includeFlights") ?? false;
         $command = new QueryFlightProgramCommand($sourceAirportCode, $destinyAirportCode, $includeFlights);
         $data = $this->commandBus->handle($command);
         return response($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $command = new UpdateFlightProgramCommand($request->all(), $id);
+        return $this->commandBus->handle($command);
+    }
+
+    public function destroy( $id)
+    {
+        $command = new DeleteFlightProgramCommand($id);
+        return $this->commandBus->handle($command);
     }
 }
