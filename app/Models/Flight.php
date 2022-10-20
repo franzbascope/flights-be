@@ -23,6 +23,10 @@ class Flight extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'information' => 'json',
+    ];
+
     protected $fillable = ["startTime","endTime","crewUuid","aircraftUuid","status","information","flightNumber"];
 
 
