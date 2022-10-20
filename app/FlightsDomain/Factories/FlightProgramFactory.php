@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\App;
 
 class FlightProgramFactory implements IFlightProgramFactory
 {
-    public function create(string $sourceAirport, string $destinyAirport, int $itineraryId): EntityFlightProgram
+    public function create(string $sourceAirport, string $destinyAirport, int $itineraryId,string $flightCode): EntityFlightProgram
     {
         $sourceAirportCode = new AirportCode($sourceAirport);
         $destinyAirportCode = new AirportCode($destinyAirport);
         $itineraryRepository = App::make(IItineraryRepository::class);
         $itinerary = new ItineraryId($itineraryId, $itineraryRepository);
-        return new EntityFlightProgram($sourceAirportCode, $destinyAirportCode, $itinerary);
+        return new EntityFlightProgram($sourceAirportCode, $destinyAirportCode, $itinerary,$flightCode);
     }
 }

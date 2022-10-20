@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 class FlightStatus
 {
     private string $flightStatus;
-    public const FLIGHT_STATUS = ['active','cancelled'];
+    public const FLIGHT_STATUS = ['active','cancelled','pending'];
 
     /**
      * @param string $flightStatus

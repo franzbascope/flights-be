@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\FlightsApplication\UseCases\Command\CommandBus;
+use App\FlightsApplication\UseCases\Command\Flight\BulkEnableFlight\BulkEnableFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\CancelFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\CreateFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\DeleteFlight\DeleteFlightCommand;
+use App\FlightsApplication\UseCases\Command\Flight\EnableFlight\EnableFlightCommand;
+use App\FlightsApplication\UseCases\Command\Flight\FlightBulkInsert\FlightBulkInsertCommand;
 use App\FlightsApplication\UseCases\Command\Flight\QueryFlights\QueryFlightsCommand;
 use App\FlightsApplication\UseCases\Command\Flight\UpdateFlight\UpdateFlightCommand;
 use App\Models\Flight;
@@ -48,7 +51,7 @@ class FlightController extends Controller
     public function cancel($flightId)
     {
         $command = new CancelFlightCommand($flightId);
-        $flight =  $this->commandBus->handle($command);
+        $flight = $this->commandBus->handle($command);
         return response($flight);
     }
 
@@ -62,5 +65,28 @@ class FlightController extends Controller
     {
         $command = new UpdateFlightCommand($request->all(), $flightId);
         return $this->commandBus->handle($command);
+    }
+
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function enable(Request $request, $flightId)
+    {
+        $command = new EnableFlightCommand($request->all(), $flightId);
+        return $this->commandBus->handle($command);
+    }
+
+    public function bulkStore(Request $request)
+    {
+        $command = new FlightBulkInsertCommand($request->all());
+        return $this->commandBus->handle($command);
+
+    }
+
+    public function bulkEnable(Request $request)
+    {
+        $command = new BulkEnableFlightCommand($request->all());
+        return $this->commandBus->handle($command);
+
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -22,11 +23,9 @@ class Flight extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["startTime","endTime","crewUuid","aircraftUuid","status","information"];
+    protected $fillable = ["startTime","endTime","crewUuid","aircraftUuid","status","information","flightNumber"];
 
-    protected $casts = [
-        'information' => 'json',
-    ];
+
 
     public function flightProgram()
     {

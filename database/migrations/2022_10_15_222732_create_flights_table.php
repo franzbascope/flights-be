@@ -15,14 +15,17 @@ return new class () extends Migration {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->dateTime("startTime");
-            $table->dateTime("endTime");
+            $table->dateTime("scheduledStartTime")->nullable();
+            $table->dateTime("scheduledEndTime")->nullable();
+            $table->string("flightNumber")->nullable();
+            $table->dateTime("startTime")->nullable();
+            $table->dateTime("endTime")->nullable();
             $table->string("uuid");
-            $table->string("crewUuid");
-            $table->string("aircraftUuid");
-            $table->string("status");
+            $table->string("crewUuid")->nullable();
+            $table->string("aircraftUuid")->nullable();
+            $table->enum("status",["active","cancelled","pending"])->default("pending");
             $table->integer("flightProgramId");
-            $table->text("information");
+            $table->text("information")->nullable();
         });
     }
 

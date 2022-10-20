@@ -31,7 +31,7 @@ class CreateFlightProgramHandler
     public function __invoke(CreateFlightProgramCommand $command)
     {
         try {
-            $flightProgram = $this->flightProgramFactory->create($command->getSourceAirport(), $command->getDestinyAirport(), $command->getItineraryId());
+            $flightProgram = $this->flightProgramFactory->create($command->getSourceAirport(), $command->getDestinyAirport(), $command->getItineraryId(),$command->getFlightCode());
             $this->unitOfWork->beginTransaction();
             $savedItinerary = $this->flightProgramRepository->create($flightProgram);
             $this->unitOfWork->commit();

@@ -30,12 +30,16 @@ Route::get('/flight_program',[\App\Http\Controllers\FlightProgramController::cla
 Route::put('/flight_program/{id}',[\App\Http\Controllers\FlightProgramController::class,'update'])->name("flight_program.update");
 Route::delete('/flight_program/{id}',[\App\Http\Controllers\FlightProgramController::class,'destroy'])->name("flight_program.destroy");
 
+
 //Flights
+Route::post('/flight/bulk',[\App\Http\Controllers\FlightController::class,'bulkStore'])->name("flight.bulkStore");
+Route::post('/flight/bulk_enable',[\App\Http\Controllers\FlightController::class,'bulkEnable'])->name("flight.bulkEnable");
 Route::post('/flight',[\App\Http\Controllers\FlightController::class,'store'])->name("flight.store");
 Route::get('/flight',[\App\Http\Controllers\FlightController::class,'index'])->name("flight.index");
 Route::put('/flight/{id}',[\App\Http\Controllers\FlightController::class,'update'])->name("flight.update");
 Route::delete('/flight/{id}',[\App\Http\Controllers\FlightController::class,'destroy'])->name("flight.destroy");
 Route::patch('/flight/cancel/{id}',[\App\Http\Controllers\FlightController::class,'cancel'])->name("flight.cancel");
+Route::patch('/flight/enable/{id}',[\App\Http\Controllers\FlightController::class,'enable'])->name("flight.enable");
 
 // Auth
 Route::post('/login',[\App\Http\Controllers\LoginController::class,"login"])->name("login.login");

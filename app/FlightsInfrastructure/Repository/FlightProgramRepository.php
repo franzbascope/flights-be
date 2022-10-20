@@ -17,6 +17,7 @@ class FlightProgramRepository implements IFlightProgramRepository
         $dbFlightProgram->destinyAirport =  $flightProgram->getDestinyAirport();
         $dbFlightProgram->itinerary_id = $flightProgram->getItineraryId();
         $dbFlightProgram->uuid = $flightProgram->getUuid();
+        $dbFlightProgram->flightCode = $flightProgram->getFlightCode();
         $dbFlightProgram->save();
         return $dbFlightProgram;
     }

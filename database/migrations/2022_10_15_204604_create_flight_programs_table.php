@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->string("uuid");
             $table->string("sourceAirport");
             $table->string("destinyAirport");
+            $table->string("flightCode")->nullable();
             $table->unsignedBigInteger("itinerary_id")->nullable();
         });
     }
