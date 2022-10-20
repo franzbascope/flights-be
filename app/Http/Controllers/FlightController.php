@@ -80,13 +80,11 @@ class FlightController extends Controller
     {
         $command = new FlightBulkInsertCommand($request->all());
         return $this->commandBus->handle($command);
-
     }
 
     public function bulkEnable(Request $request)
     {
         $command = new BulkEnableFlightCommand($request->all());
         return $this->commandBus->handle($command);
-
     }
 }

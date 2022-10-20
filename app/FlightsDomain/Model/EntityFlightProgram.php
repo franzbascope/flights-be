@@ -25,7 +25,7 @@ class EntityFlightProgram extends Entity
      * @param AirportCode $destinyAirport
      * @param string $itineraryId
      */
-    public function __construct(AirportCode $sourceAirport, AirportCode $destinyAirport, ItineraryId $itineraryId,string $flightCode)
+    public function __construct(AirportCode $sourceAirport, AirportCode $destinyAirport, ItineraryId $itineraryId, string $flightCode)
     {
         parent::__construct();
         $this->sourceAirport = $sourceAirport->getAirportCode();

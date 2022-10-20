@@ -28,7 +28,7 @@ class FlightProgramController extends Controller
         $itineraryId = $request->get("itineraryId");
         $flightCode = $request->get("flightCode");
 
-        $command = new CreateFlightProgramCommand($sourceAirport, $destinyAirport, $itineraryId,$flightCode);
+        $command = new CreateFlightProgramCommand($sourceAirport, $destinyAirport, $itineraryId, $flightCode);
         $itinerary = $this->commandBus->handle($command);
         return response($itinerary);
     }
