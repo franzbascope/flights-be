@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Validator;
 
 class FlightBulkEnableValidator implements IValidate
 {
-
     /**
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -25,7 +24,7 @@ class FlightBulkEnableValidator implements IValidate
 
 
         ];
-        $data = Validator::make($data,$rules)->validate();
+        $data = Validator::make($data, $rules)->validate();
         return $data["data"];
     }
 }

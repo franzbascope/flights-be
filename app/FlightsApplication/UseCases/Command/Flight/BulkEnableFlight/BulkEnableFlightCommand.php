@@ -24,8 +24,4 @@ class BulkEnableFlightCommand
     {
         return $this->data;
     }
-
-
-
-
 }

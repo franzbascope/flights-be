@@ -8,8 +8,6 @@ use Illuminate\Support\Str;
 
 class FlightBulkInsertValidator implements IValidate
 {
-
-
     /**
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -22,11 +20,11 @@ class FlightBulkInsertValidator implements IValidate
             "data.*.scheduledEndTime" => 'required|date',
 
         ];
-        $data = Validator::make($data,$rules)->validate();
+        $data = Validator::make($data, $rules)->validate();
         $parsedData = $data["data"];
-        return Collect($parsedData)->map(function($item){
-           $item["uuid"] = Str::uuid()->toString();
-           return $item;
+        return Collect($parsedData)->map(function ($item) {
+            $item["uuid"] = Str::uuid()->toString();
+            return $item;
         })->toArray();
     }
 }

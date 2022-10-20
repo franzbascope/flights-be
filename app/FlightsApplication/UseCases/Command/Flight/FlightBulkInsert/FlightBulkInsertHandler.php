@@ -37,8 +37,5 @@ class FlightBulkInsertHandler
             $this->unitOfWork->rollBack();
             throw  $ex;
         }
-
     }
-
-
 }

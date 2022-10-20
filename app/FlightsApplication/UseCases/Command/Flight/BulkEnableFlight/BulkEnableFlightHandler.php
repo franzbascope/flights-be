@@ -43,18 +43,14 @@ class BulkEnableFlightHandler
             foreach ($command->getData() as $data) {
                 $id = $data["id"];
                 unset($data["id"]);
-                $response[] = $this->flightRepository->update($data,$id);
+                $response[] = $this->flightRepository->update($data, $id);
                 $this->unitOfWork->addDomainEvent($this->getCreatedFlightEvent($id));
             }
             $this->unitOfWork->commit();
             return $response;
-
         } catch (\Exception $ex) {
             $this->unitOfWork->rollBack();
             throw $ex;
         }
-
-
     }
-
 }

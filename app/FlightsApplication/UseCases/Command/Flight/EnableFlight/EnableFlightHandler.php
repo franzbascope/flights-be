@@ -45,8 +45,5 @@ class EnableFlightHandler
             $this->unitOfWork->rollBack();
             throw $ex;
         }
-
     }
-
-
 }

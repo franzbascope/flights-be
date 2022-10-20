@@ -2,7 +2,6 @@
 
 namespace App\FlightsApplication\UseCases\Command\Flight\EnableFlight;
 
-
 use Illuminate\Support\Facades\Validator;
 
 class EnableFlightCommand
@@ -46,6 +45,4 @@ class EnableFlightCommand
     {
         return $this->flightId;
     }
-
-
 }
