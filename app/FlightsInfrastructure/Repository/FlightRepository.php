@@ -31,11 +31,12 @@ class FlightRepository implements IFlightRepository
         return Flight::find($id);
     }
 
-    public function update(EntityFlight $flight, int $flightId)
+    public function update(array $data, int $flightId)
     {
         $flight = Flight::find($flightId);
-        $flight->fill($flight);
+        $flight->fill($data);
         $flight->save();
+        return $flight;
     }
 
     public function query(Builder $query = null)

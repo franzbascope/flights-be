@@ -7,6 +7,7 @@ use App\FlightsApplication\UseCases\Command\Flight\CancelFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\CreateFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\DeleteFlight\DeleteFlightCommand;
 use App\FlightsApplication\UseCases\Command\Flight\QueryFlights\QueryFlightsCommand;
+use App\FlightsApplication\UseCases\Command\Flight\UpdateFlight\UpdateFlightCommand;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -55,5 +56,11 @@ class FlightController extends Controller
     {
         $command = new DeleteFlightCommand($flightId);
         return $this->commandBus->handle($command);
+    }
+
+    public function update(Request $request,$flightId){
+        $command = new UpdateFlightCommand($request->all(),$flightId);
+        return $this->commandBus->handle($command);
+
     }
 }

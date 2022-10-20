@@ -10,7 +10,7 @@ interface IFlightRepository
 {
     public function create(EntityFlight $flight);
 
-    public function update(EntityFlight $flight, int $flightId);
+    public function update(array $data, int $flightId);
 
     public function getById(int $id): ?Model;
 

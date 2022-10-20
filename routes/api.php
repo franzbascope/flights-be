@@ -17,7 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Itinerary
 Route::post('/itinerary',[\App\Http\Controllers\ItineraryController::class,'store'])->name("itinerary.store");
+Route::get('/itinerary',[\App\Http\Controllers\ItineraryController::class,'index'])->name("itinerary.index");
+Route::delete('/itinerary/{id}',[\App\Http\Controllers\ItineraryController::class,'destroy'])->name("itinerary.destroy");
+Route::put('/itinerary/{id}',[\App\Http\Controllers\ItineraryController::class,'update'])->name("itinerary.update");
 
 //Flight Programs
 Route::post('/flight_program',[\App\Http\Controllers\FlightProgramController::class,'store'])->name("flight_program.store");
@@ -28,8 +33,9 @@ Route::delete('/flight_program/{id}',[\App\Http\Controllers\FlightProgramControl
 //Flights
 Route::post('/flight',[\App\Http\Controllers\FlightController::class,'store'])->name("flight.store");
 Route::get('/flight',[\App\Http\Controllers\FlightController::class,'index'])->name("flight.index");
-Route::patch('/flight/{id}',[\App\Http\Controllers\FlightController::class,'cancel'])->name("flight.cancel");
+Route::put('/flight/{id}',[\App\Http\Controllers\FlightController::class,'update'])->name("flight.update");
 Route::delete('/flight/{id}',[\App\Http\Controllers\FlightController::class,'destroy'])->name("flight.destroy");
+Route::patch('/flight/cancel/{id}',[\App\Http\Controllers\FlightController::class,'cancel'])->name("flight.cancel");
 
 // Auth
 Route::post('/login',[\App\Http\Controllers\LoginController::class,"login"])->name("login.login");
