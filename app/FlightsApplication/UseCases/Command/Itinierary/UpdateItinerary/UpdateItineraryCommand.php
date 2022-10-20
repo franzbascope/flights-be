@@ -32,8 +32,4 @@ class UpdateItineraryCommand
     {
         return $this->itineraryId;
     }
-
-
-
-
 }

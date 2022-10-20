@@ -58,9 +58,9 @@ class FlightController extends Controller
         return $this->commandBus->handle($command);
     }
 
-    public function update(Request $request,$flightId){
-        $command = new UpdateFlightCommand($request->all(),$flightId);
+    public function update(Request $request, $flightId)
+    {
+        $command = new UpdateFlightCommand($request->all(), $flightId);
         return $this->commandBus->handle($command);
-
     }
 }

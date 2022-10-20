@@ -48,14 +48,15 @@ class ItineraryController extends Controller
         return response($itinerary);
     }
 
-    public function destroy($itineraryId){
+    public function destroy($itineraryId)
+    {
         $command = new DeleteItineraryCommand($itineraryId);
         return $this->commandBus->handle($command);
     }
 
-    public function update(Request $request,$itineraryId){
+    public function update(Request $request, $itineraryId)
+    {
         $command = new UpdateItineraryCommand($request->all(), $itineraryId);
         return $this->commandBus->handle($command);
-
     }
 }

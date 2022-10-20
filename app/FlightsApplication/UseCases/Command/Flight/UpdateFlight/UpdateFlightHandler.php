@@ -18,8 +18,6 @@ class UpdateFlightHandler
 
     public function __invoke(UpdateFlightCommand $command)
     {
-        return $this->flightRepository->update($command->getData(),$command->getFlightId());
+        return $this->flightRepository->update($command->getData(), $command->getFlightId());
     }
-
-
 }

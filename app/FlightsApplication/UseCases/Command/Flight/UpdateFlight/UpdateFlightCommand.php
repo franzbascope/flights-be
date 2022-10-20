@@ -50,8 +50,4 @@ class UpdateFlightCommand
     {
         $this->flightId = $flightId;
     }
-
-
-
-
 }

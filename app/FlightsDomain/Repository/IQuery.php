@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Builder;
 
 interface IQuery
 {
-    public function getQuery(array $data):Builder;
-
+    public function getQuery(array $data): Builder;
 }

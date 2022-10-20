@@ -21,8 +21,4 @@ class QueryItineraryCommand
     {
         return $this->data;
     }
-
-
-
-
 }

@@ -18,8 +18,6 @@ class UpdateItineraryHandler
 
     public function __invoke(UpdateItineraryCommand $command)
     {
-        return $this->itineraryRepository->update($command->getData(),$command->getItineraryId());
+        return $this->itineraryRepository->update($command->getData(), $command->getItineraryId());
     }
-
-
 }

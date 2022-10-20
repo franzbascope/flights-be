@@ -46,8 +46,7 @@ class ItineraryRepository implements IItineraryRepository
 
     private function handleNotFound(
         int $id
-    )
-    {
+    ) {
         throw new ItemNotFoundException("Itinerary with Id: $id could not be found");
     }
 

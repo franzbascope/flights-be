@@ -7,7 +7,6 @@ use App\FlightsInfrastructure\Queries\Itinerary\SearchItineraryQuery;
 
 class QueryItineraryHandler
 {
-
     private IItineraryRepository $itineraryRepository;
 
     /**
@@ -24,5 +23,4 @@ class QueryItineraryHandler
         $query = (new SearchItineraryQuery())->getQuery($command->getData());
         return $this->itineraryRepository->query($query);
     }
-
 }

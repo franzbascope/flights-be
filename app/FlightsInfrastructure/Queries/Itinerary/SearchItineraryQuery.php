@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 class SearchItineraryQuery extends MainQuery implements IQuery
 {
-
-
     public function getQuery(array $data): Builder
     {
         $properties = ["sourceAirport","destinyAirport"];
         $query = Itinerary::query();
-        return $this->buildQueryFromRequest($query,$properties,$data);
+        return $this->buildQueryFromRequest($query, $properties, $data);
     }
 }

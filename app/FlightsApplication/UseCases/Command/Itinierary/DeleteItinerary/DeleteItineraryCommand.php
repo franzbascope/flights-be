@@ -21,6 +21,4 @@ class DeleteItineraryCommand
     {
         return $this->itineraryId;
     }
-
-
 }

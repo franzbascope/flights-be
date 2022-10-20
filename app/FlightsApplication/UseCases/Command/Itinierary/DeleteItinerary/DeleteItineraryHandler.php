@@ -21,5 +21,4 @@ class DeleteItineraryHandler
     {
         return $this->itineraryRepository->delete($command->getItineraryId());
     }
-
 }

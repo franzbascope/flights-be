@@ -15,5 +15,5 @@ interface IItineraryRepository
 
     public function delete(int $itineraryId);
 
-    public function update(array $data,int $id);
+    public function update(array $data, int $id);
 }
