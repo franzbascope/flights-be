@@ -22,6 +22,7 @@ class FlightBulkEnableValidator implements IValidate
             "data.*.aircraftUuid" => 'required',
             'data.*.flightNumber' => 'required',
             'data.*.status' => 'nullable',
+            'data.*.information' => 'nullable',
 
 
         ];
