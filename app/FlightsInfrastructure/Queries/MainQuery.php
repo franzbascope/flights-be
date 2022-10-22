@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class MainQuery
 {
-    protected function buildQueryFromRequest(Builder $query, array $properties, array $data)
+    public function buildQueryFromRequest(Builder $query, array $properties, array $data)
     {
         foreach ($properties as $property) {
             $value = $data[$property] ?? null;

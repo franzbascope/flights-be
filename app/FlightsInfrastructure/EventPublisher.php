@@ -19,7 +19,7 @@ class EventPublisher implements IEventPublisher
         ]);
     }
 
-    private function getSqsClient()
+    public function getSqsClient()
     {
         return new SnsClient([
             'credentials' => [
